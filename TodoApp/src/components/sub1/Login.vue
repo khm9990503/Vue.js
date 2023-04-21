@@ -1,5 +1,7 @@
 <template>
-  <h4>로그인</h4>
+  <div>
+    <h3>로그인</h3>
+  </div>
   <form @submit.prevent="loginProc">
     <table border="1">
       <tr>
@@ -22,7 +24,6 @@
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { reactive } from "vue";
-import axios from "axios";
 
 const router = useRouter();
 const store = useStore();

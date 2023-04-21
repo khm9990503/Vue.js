@@ -1,4 +1,8 @@
 <template>
+  <router-link to="/login">로그인</router-link> /
+  <router-link to="/register">회원가입</router-link>
+  <router-view></router-view>
+  <br />
   <Header v-on:addTodo="addTodoHandler"></Header
   ><!--헨들러 = 리스너-->
   <Main></Main>

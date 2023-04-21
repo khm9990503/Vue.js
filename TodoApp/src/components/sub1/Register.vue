@@ -1,6 +1,8 @@
 <template>
-  <h4>로그인</h4>
-  <form @submit.prevent="loginProc">
+  <div>
+    <h3>회원가입</h3>
+  </div>
+  <form @submit.prevent="registProc">
     <table border="1">
       <tr>
         <td>아이디</td>
@@ -12,37 +14,21 @@
       </tr>
       <tr>
         <td colspan="2" align="right">
-          <input type="submit" value="로그인" />
+          <input type="submit" value="회원가입" />
         </td>
       </tr>
     </table>
   </form>
 </template>
 <script setup>
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
 import { reactive } from "vue";
 import axios from "axios";
-
-const router = useRouter();
-const store = useStore();
-
 const user = reactive({
   uid: "",
   pass: "",
 });
-
-const loginProc = function () {
-  // 로그인 요청
-  store
-    .dispatch("login", user)
-    .then((response) => {
-      // 로그인 성공 전환
-      router.push("/jwt/loginSuccess");
-    })
-    .catch((error) => {
-      alert("로그인 실패!");
-    });
+const registProc = () => {
+  alert("dd");
 };
 </script>
 <style scoped></style>
