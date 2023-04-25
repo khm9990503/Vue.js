@@ -4,8 +4,8 @@
 </template>
 <script setup>
 import { onBeforeMount } from "vue";
-import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 const store = useStore();
 const router = useRouter();
 onBeforeMount(() => {

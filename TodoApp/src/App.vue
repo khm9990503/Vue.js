@@ -13,6 +13,7 @@ import Header from "./components/Header.vue";
 import Main from "./components/Main.vue";
 import Footer from "./components/Footer.vue";
 import { useStore } from "vuex";
+import { onBeforeMount } from "vue";
 export default {
   name: "App",
   components: {
@@ -26,7 +27,19 @@ export default {
       // store에 저장
       store.dispatch("addTodo", inputValue);
     };
-    return { store, addTodoHandler };
+    onBeforeMount(() => {
+      console.log("JwtComponent onBeforeMount!!!");
+      const accessToken = localStorage.getItem("accessToken");
+      store
+        .dispatch("authUser", accessToken)
+        .then((response) => {
+          alert("로그인 중");
+        })
+        .catch((error) => {
+          alert("로그인을 하고 사용해주세요");
+        });
+    });
+    return { store, addTodoHandler, onBeforeMount };
   },
 };
 </script>

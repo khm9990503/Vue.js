@@ -28,7 +28,15 @@ const user = reactive({
   pass: "",
 });
 const registProc = () => {
-  alert("dd");
+  axios
+    .post("http://localhost:8080/TodoApp/user/regist", user)
+    .then((response) => {
+      alert("회원가입 성공!");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("회원가입 실패!");
+    });
 };
 </script>
 <style scoped></style>

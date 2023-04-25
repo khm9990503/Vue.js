@@ -38,8 +38,7 @@ const loginProc = function () {
   store
     .dispatch("login", user)
     .then((response) => {
-      // 로그인 성공 전환
-      router.push("/jwt/loginSuccess");
+      alert("로그인 성공");
     })
     .catch((error) => {
       alert("로그인 실패!");
