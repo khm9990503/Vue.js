@@ -19,5 +19,13 @@ const router = createRouter({
     { path: "/modify", name: "Modify", component: Modify },
   ],
 });
+router.beforeEach((to, from, next) => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken != null) {
+    // JWT 인증 토큰이 있는 경우 이전 라우터를 기억합니다.
+    localStorage.setItem("previousRoute", from.path);
+  }
+  next();
+});
 
 export default router;
