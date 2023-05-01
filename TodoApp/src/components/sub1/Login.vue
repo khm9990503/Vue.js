@@ -23,22 +23,24 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { reactive } from "vue";
+import { reactive, ref, defineEmits } from "vue";
 
 const router = useRouter();
 const store = useStore();
-
 const user = reactive({
   uid: "",
   pass: "",
 });
+
+const emits = defineEmits("loginSuccess");
 
 const loginProc = function () {
   // 로그인 요청
   store
     .dispatch("login", user)
     .then((response) => {
-      alert("로그인 성공");
+      store.dispatch("setShowLogin", 0);
+      alert("로그인 완료");
     })
     .catch((error) => {
       alert("로그인 실패!");
