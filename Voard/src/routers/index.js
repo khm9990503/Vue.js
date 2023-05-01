@@ -15,8 +15,8 @@ const router = createRouter({
     { path: "/user/register", name: "Register", component: Register },
     { path: "/list", name: "List", component: List },
     { path: "/write", name: "Write", component: Write },
-    { path: "/view", name: "View", component: View },
-    { path: "/modify", name: "Modify", component: Modify },
+    { path: "/view", name: "View", component: View, props: true },
+    { path: "/modify", name: "Modify", component: Modify, props: true },
   ],
 });
 router.beforeEach((to, from, next) => {

@@ -16,7 +16,7 @@ const userStore = createStore({
     },
     setUserAuth(context, accessToken) {
       axios
-        .get("http://localhost:8080/Voard/user/auth", {
+        .get("http://localhost:8080/Voard2/user/auth", {
           headers: { "X-AUTH-TOKEN": accessToken },
         })
         .then((response) => {
@@ -26,6 +26,7 @@ const userStore = createStore({
         })
         .catch((error) => {
           console.log(error);
+          throw error;
         });
     },
   },

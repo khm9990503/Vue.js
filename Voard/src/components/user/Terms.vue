@@ -37,7 +37,7 @@
         </v-sheet>
       </v-container>
     </v-main>
-    <v-footer app theme="dark"> copyright &copy;Voard v1.0 </v-footer>
+    <v-footer app theme="dark"> copyright &copy;Voard2 v1.0 </v-footer>
   </v-app>
 </template>
 <script setup>
@@ -64,7 +64,7 @@ const btnNext = () => {
 
 onBeforeMount(() => {
   axios
-    .get("http://localhost:8080/Voard/user/terms")
+    .get("/user/getTerms")
     .then((response) => {
       state.data = response.data;
       //data.privacy = response.data.privacy;

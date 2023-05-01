@@ -20,11 +20,13 @@
                 label="글제목 입력"
                 variant="outlined"
                 density="compact"
+                v-model="article.title"
               ></v-text-field>
               <v-textarea
                 label="글내용 입력"
                 variant="outlined"
                 rows="10"
+                v-model="article.content"
               ></v-textarea>
             </v-card-text>
             <v-card-actions>
@@ -34,25 +36,54 @@
             </v-card-actions>
           </v-card>
         </v-sheet>
+        <v-dialog v-model="dialog" width="auto">
+          <v-card>
+            <v-toolbar color="primary" title="등록 확인"></v-toolbar>
+            <v-card-text> 작성한 글 등록 완료! </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" @click="btnCloseDlg">확인</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-container>
     </v-main>
-    <v-footer app theme="dark"> copyright &copy;Voard v1.0 </v-footer>
+    <v-footer app theme="dark"> copyright &copy;Voard2 v1.0 </v-footer>
   </v-app>
 </template>
 <script setup>
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, reactive, ref } from "vue";
+import axios from "axios";
 const router = useRouter();
 const userStore = useStore();
 
+const dialog = ref(false);
 const user = computed(() => userStore.getters.user);
-
+const article = reactive({
+  title: "",
+  content: "",
+  uid: user?.value.uid,
+});
+const btnCloseDlg = () => {
+  dialog.value = false;
+  router.push("/list");
+};
 const btnCancel = () => {
   router.push("/list");
 };
 const btnWrite = () => {
-  router.push("/list");
+  axios
+    .post("/write", article)
+    .then((response) => {
+      console.log(response);
+      dialog.value = true;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 const btnLogout = () => {
   localStorage.removeItem("accessToken");

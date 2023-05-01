@@ -199,7 +199,7 @@
         </v-sheet>
       </v-container>
     </v-main>
-    <v-footer app theme="dark"> copyright &copy;Voard v1.0 </v-footer>
+    <v-footer app theme="dark"> copyright &copy;Voard2 v1.0 </v-footer>
   </v-app>
 </template>
 <script setup>
@@ -226,7 +226,7 @@ const user = reactive({
 const btnCheckUid = () => {
   loading.value = true;
   axios
-    .get("http://localhost:8080/Voard/user/countUid", {
+    .get("/user/countUid", {
       params: { uid: user.uid },
     })
     .then((response) => {
@@ -241,7 +241,7 @@ const btnCheckUid = () => {
 };
 const btnCheckNick = () => {
   axios
-    .get("http://localhost:8080/Voard/user/countNick", {
+    .get("/user/countNick", {
       params: { nick: user.nick },
     })
     .then((response) => {
@@ -283,7 +283,7 @@ const btnCancel = () => {
 };
 const btnNext = () => {
   axios
-    .post("http://localhost:8080/Voard/user/regist", user)
+    .post("/user/regist", user)
     .then((response) => {
       if (response.data > 0) {
         alert("등록을 완료했습니다.\n로그인을 해주세요.");

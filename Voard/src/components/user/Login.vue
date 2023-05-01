@@ -45,7 +45,7 @@
         </v-card>
       </v-container>
     </v-main>
-    <v-footer app theme="dark"> copyright &copy;Voard v1.0 </v-footer>
+    <v-footer app theme="dark"> copyright &copy;Voard2 v1.0 </v-footer>
   </v-app>
 </template>
 <script setup>
@@ -61,7 +61,7 @@ const user = reactive({
 });
 const btnLogin = () => {
   axios
-    .post("http://localhost:8080/Voard/user/login", user)
+    .post("/user/login", user)
     .then((response) => {
       console.log(response);
 
